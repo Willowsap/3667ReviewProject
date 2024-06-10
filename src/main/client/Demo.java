@@ -15,7 +15,7 @@ import birds.NoFly;
 import birds.Quack;
 import birds.RedHeadedDuck;
 import birds.RegularFly;
-import birds.RocketPoweredFlying;
+import birds.RocketPoweredFly;
 
 /**
  * Playing with ducks!
@@ -108,7 +108,7 @@ public class Demo {
         duck.setFlyBehavior(new RegularFly());
         break;
       case 2:
-        duck.setFlyBehavior(new RocketPoweredFlying());
+        duck.setFlyBehavior(new RocketPoweredFly());
         break;
       case 3:
         duck.setFlyBehavior(new NoFly());

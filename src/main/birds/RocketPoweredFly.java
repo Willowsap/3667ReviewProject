@@ -6,7 +6,7 @@ package birds;
  * @author Willow Sapphire
  * @version 06/10/2024
  */
-public class RocketPoweredFlying implements FlyBehavior {
+public class RocketPoweredFly implements FlyBehavior {
   @Override
   public void fly() {
     System.out.println("Rocket boost actived: ZOOOM!!!");
