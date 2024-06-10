@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -27,6 +28,7 @@ public class DuckTest {
     System.setOut(oldOut);
   }
 
+  @Test
   public void testFly() {
     obj.fly();
     assertEquals(MockDuck.FLY_OUTPUT, getOutput());
