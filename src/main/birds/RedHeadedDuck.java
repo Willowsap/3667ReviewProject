@@ -2,7 +2,7 @@ package birds;
 
 /**
  * A simple Red-Headed Duck.
- * Fllies and Quacks normally.
+ * Flies and Quacks normally.
  * 
  * @author Willow Sapphire
  * @version 06/10/2024

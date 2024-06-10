@@ -7,5 +7,6 @@ package birds;
  * @version 06/10/2024
  */
 public class NoFly implements FlyBehavior {
+  @Override
   public void fly() {}
 }

@@ -3,6 +3,7 @@ package client;
 import birds.RubberDuck;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import birds.DecoyDuck;
@@ -31,7 +32,7 @@ public class Demo {
       System.out.println("1) Add Duck");
       System.out.println("2) Roll Call");
       System.out.println("3) Quit");
-      choice = getOneTwoThree(kb, 1, 3);
+      choice = getNumber(kb, 1, 3);
       switch (choice) {
         case 1:
           addDuck(ducks, kb);
@@ -42,7 +43,6 @@ public class Demo {
       }
     } while (choice != 3);
     System.out.println("Goodbye!");
-    kb.close();
   }
 
   /**
@@ -78,7 +78,7 @@ public class Demo {
     System.out.println("2) Red-Headed Duck");
     System.out.println("3) Rubber Duck");
     System.out.println("4) Decoy Duck");
-    int choice = getOneTwoThree(kb, 1, 4);
+    int choice = getNumber(kb, 1, 4);
     switch (choice) {
       case 1:
         ducks.add(new MallardDuck());
@@ -106,7 +106,7 @@ public class Demo {
    * @param kb the Scanner from which to read input
    * @return the number entered by the user
    */
-  private static int getOneTwoThree(Scanner kb, int min, int max) {
+  private static int getNumber(Scanner kb, int min, int max) {
     int choice = 0;
     do {
       try {
@@ -114,7 +114,7 @@ public class Demo {
         if (choice < min || choice > max) {
           throw new IllegalArgumentException();
         }
-      } catch (IllegalArgumentException e) {
+      } catch (InputMismatchException | IllegalArgumentException e) {
         System.out.printf("Please enter a number between %d and %d\n", min, max);
       }
     } while (choice < min || choice > max);
