@@ -1,6 +1,7 @@
 package client;
 
 import birds.RubberDuck;
+import birds.Squeak;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -9,7 +10,12 @@ import java.util.Scanner;
 import birds.DecoyDuck;
 import birds.Duck;
 import birds.MallardDuck;
+import birds.MuteQuack;
+import birds.NoFly;
+import birds.Quack;
 import birds.RedHeadedDuck;
+import birds.RegularFly;
+import birds.RocketPoweredFlying;
 
 /**
  * Playing with ducks!
@@ -31,8 +37,9 @@ public class Demo {
       System.out.println("Please select from the following menu");
       System.out.println("1) Add Duck");
       System.out.println("2) Roll Call");
-      System.out.println("3) Quit");
-      choice = getNumber(kb, 1, 3);
+      System.out.println("3) Edit Duck");
+      System.out.println("4) Quit");
+      choice = getNumber(kb, 1, 4);
       switch (choice) {
         case 1:
           addDuck(ducks, kb);
@@ -40,9 +47,98 @@ public class Demo {
         case 2:
           rollCall(ducks);
           break;
+        case 3:
+          editDuck(ducks, kb);
+          break;
       }
-    } while (choice != 3);
+    } while (choice != 4);
     System.out.println("Goodbye!");
+  }
+
+  /**
+   * Edits the qualities of a specific duck.
+   * 
+   * @param ducks the list of ducks in which to find the duck to edit
+   * @param kb the Scanner from which to get user input
+   */
+  private static void editDuck(ArrayList<Duck> ducks, Scanner kb) {
+    System.out.println("Please select the duck you would like to edit");
+    for (int i = 0; i < ducks.size(); i++) {
+      Duck d = ducks.get(i);
+      System.out.printf("%d) ", i + 1);
+      d.display();
+    }
+    int choice = getNumber(kb, 1, ducks.size());
+    Duck selectedDuck = ducks.get(choice - 1);
+    System.out.println("What would you like to do?");
+    System.out.println("1) Change Fly Behavior");
+    System.out.println("2) Change Quack Behavior");
+    System.out.println("3) Delete Duck");
+    System.out.println("4) Abort");
+    choice = getNumber(kb, 1, 4);
+    switch (choice) {
+      case 1:
+        changeFlyBehavior(selectedDuck, kb);
+        break;
+      case 2:
+        changeQuackBehavior(selectedDuck, kb);
+        break;
+      case 3:
+        ducks.remove(selectedDuck);
+        break;
+      case 4:
+        return;
+    }
+  }
+
+  /**
+   * Changes the fly behavior of a given duck based on user input.
+   * 
+   * @param duck the duck to edit
+   * @param kb the Scanner from which to get user input
+   */
+  public static void changeFlyBehavior(Duck duck, Scanner kb) {
+    System.out.println("What fly behavior would you like?");
+    System.out.println("1) Regular Flying");
+    System.out.println("2) Rocket Powered Flying");
+    System.out.println("3) No Flying");
+    int choice = getNumber(kb, 1, 3);
+    switch (choice) {
+      case 1:
+        duck.setFlyBehavior(new RegularFly());
+        break;
+      case 2:
+        duck.setFlyBehavior(new RocketPoweredFlying());
+        break;
+      case 3:
+        duck.setFlyBehavior(new NoFly());
+        break;
+    }
+  }
+
+  /**
+   * Changes the quack behavior of a given duck based on user input.
+   * 
+   * @param duck the duck to edit
+   * @param kb the Scanner from which to get user input
+   */
+  public static void changeQuackBehavior(Duck duck, Scanner kb) {
+    System.out.println("What quack behavior would you like?");
+    System.out.println("1) Quack");
+    System.out.println("2) Squeak");
+    System.out.println("3) Mute Quack");
+    int choice = getNumber(kb, 1, 3);
+    switch (choice) {
+      case 1:
+        duck.setQuackBehavior(new Quack());
+        break;
+      case 2:
+        duck.setQuackBehavior(new Squeak());
+        break;
+      case 3:
+        duck.setQuackBehavior(new MuteQuack());
+        break;
+    }
   }
 
   /**
