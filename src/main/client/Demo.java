@@ -197,9 +197,11 @@ public class Demo {
 
   /**
    * Gets a number from the user and verifies it is
-   * in the specified range
+   * in the specified range.
    * 
    * @param kb the Scanner from which to read input
+   * @param min the minimum acceptable number
+   * @param max the maximum acceptable number
    * @return the number entered by the user
    */
   private static int getNumber(Scanner kb, int min, int max) {
@@ -210,8 +212,10 @@ public class Demo {
         if (choice < min || choice > max) {
           throw new IllegalArgumentException();
         }
-      } catch (InputMismatchException | IllegalArgumentException e) {
-        System.out.printf("Please enter a number between %d and %d\n", min, max);
+      }
+      catch (InputMismatchException | IllegalArgumentException e) {
+        System.out.printf("Please enter a number between %d and %d\n",
+          min, max);
       }
     } while (choice < min || choice > max);
     return choice;
